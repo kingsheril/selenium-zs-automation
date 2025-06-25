@@ -2,21 +2,22 @@ package base;
 
 import driver.DriverManager;
 import org.testng.annotations.AfterClass;
-import pageObjects.SearchResultsPage;
+import pageObjects.SearchTab;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
 
-public class SearchBase extends ZiaSearchBase
+public class SearchBase extends BaseTest
 {
-    SearchResultsPage searchPage;
+    public SearchTab searchTab;
 
     @BeforeClass
     public void initPageObjects()
     {
-        setup();
-        super.initPageObjects();
-        searchPage = new SearchResultsPage(DriverManager.getDriver());
+        searchTab = new SearchTab(DriverManager.getDriver());
+        launchBrowser();
+        login();
+        System.out.println("\n\nBefore class in SearchBase");
     }
 
     @AfterClass

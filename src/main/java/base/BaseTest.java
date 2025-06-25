@@ -2,24 +2,16 @@ package base;
 
 import driver.DriverManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import pageObjects.AccountsPage;
 import pageObjects.SearchHome;
 
 import java.io.IOException;
-import java.time.Duration;
 
-public abstract class ZiaSearchBase extends CommonActions
+public class BaseTest extends CommonActions
 {
     public AccountsPage accountsPage;
     public SearchHome searchHome;
-
-    public void initPageObjects()
-    {
-        setup();
-        accountsPage = new AccountsPage(DriverManager.getDriver());
-        searchHome = new SearchHome(DriverManager.getDriver());
-    }
 
     public void launchBrowser()
     {
@@ -29,29 +21,34 @@ public abstract class ZiaSearchBase extends CommonActions
 
     public void login()
     {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10));
-
         accountsPage.clickSignInButton();
-        wait.until(ExpectedConditions.elementToBeClickable(accountsPage.userNameField));
+        DriverManager.getDriverWait().until(ExpectedConditions.elementToBeClickable(accountsPage.userNameField));
         accountsPage.enterUserName("sheril.ss");
         pressEnter();
+        DriverManager.getDriverWait().until(ExpectedConditions.elementToBeClickable(accountsPage.passwordField));
         accountsPage.enterPassword("I@mIronMan#13");
         pressEnter();
     }
 
+    @BeforeClass
     public void setup()
     {
         try
         {
             setupDriverObj();
+            accountsPage = new AccountsPage(DriverManager.getDriver());
+            searchHome = new SearchHome(DriverManager.getDriver());
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("before class in BaseTest");
     }
 
     public void setupDriverObj() throws IOException
     {
         DriverManager.createDriver();
+        DriverManager.createDriverWait();
+        System.out.println("Driver Created by thread - "+Thread.currentThread().getName());
     }
 }
