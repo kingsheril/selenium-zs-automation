@@ -12,21 +12,19 @@ public class Calendar extends SearchBase
     @BeforeMethod
     public void clearSearchBox()
     {
-        System.out.println("\n\nCalendar before method");
         searchHome.clearSearchBox();
     }
 
     @BeforeClass()
     public void selectCalendarService()
     {
-        System.out.println("\n\nBefore class in Calendar");
         searchTab.selectServiceInLeftPane(SERVICES.CALENDAR.getServicePanelName());
     }
 
     @Test
     public void searchTest()
     {
-        searchHome.enterQuery("test");
+        searchHome.enterQueryInSearchBar("test");
         pressEnter();
     }
 }

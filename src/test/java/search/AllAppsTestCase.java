@@ -10,8 +10,6 @@ public class AllAppsTestCase extends SearchBase
     @BeforeMethod
     public void clearSearchBox()
     {
-
-        System.out.println("\n\nAll Apps before method");
         searchHome.clearSearchBox();
     }
 
@@ -24,7 +22,7 @@ public class AllAppsTestCase extends SearchBase
     @Test
     public void querySearch()
     {
-        searchHome.enterQuery("test");
+        searchHome.enterQueryInSearchBar("test");
         pressEnter();
     }
 }

@@ -42,13 +42,12 @@ public class BaseTest extends CommonActions
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("before class in BaseTest");
     }
 
     public void setupDriverObj() throws IOException
     {
         DriverManager.createDriver();
         DriverManager.createDriverWait();
-        System.out.println("Driver Created by thread - "+Thread.currentThread().getName());
+//        System.out.println("Driver Created by thread - "+Thread.currentThread().getName());
     }
 }

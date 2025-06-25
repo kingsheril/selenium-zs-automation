@@ -17,7 +17,6 @@ public class SearchBase extends BaseTest
         searchTab = new SearchTab(DriverManager.getDriver());
         launchBrowser();
         login();
-        System.out.println("\n\nBefore class in SearchBase");
     }
 
     @AfterClass

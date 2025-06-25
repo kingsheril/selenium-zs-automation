@@ -22,7 +22,7 @@ public class SearchHome
         PageFactory.initElements(driver, this);
     }
 
-    public void enterQuery(String query)
+    public void enterQueryInSearchBar(String query)
     {
         searchBar.sendKeys(query);
     }
